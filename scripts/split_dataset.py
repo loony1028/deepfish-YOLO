@@ -24,7 +24,7 @@ val = images[split_idx:]
 def copy_files(files, split):
     for f in files:
         copy(f"{IMG_DIR}/{f}", f"{OUT_DIR}/{split}/images/{f}")
-        label = f.replace(".jpg", ".txt")
+        label = f.replace(".jpg", ".json")
         copy(f"{LBL_DIR}/{label}", f"{OUT_DIR}/{split}/labels/{label}")
 
 copy_files(train, "train")
