@@ -22,10 +22,22 @@ train = images[:split_idx]
 val = images[split_idx:]
 
 def copy_files(files, split):
+    skipped = 0
+
     for f in files:
-        copy(f"{IMG_DIR}/{f}", f"{OUT_DIR}/{split}/images/{f}")
-        label = f.replace(".jpg", ".json")
-        copy(f"{LBL_DIR}/{label}", f"{OUT_DIR}/{split}/labels/{label}")
+        img_path = f"{IMG_DIR}/{f}"
+        label = os.path.splitext(f)[0] + ".txt"
+        label_path = f"{LBL_DIR}/{label}"
+
+        # ✅ skip if label doesn't exist
+        if not os.path.exists(label_path):
+            skipped += 1
+            continue
+
+        copy(img_path, f"{OUT_DIR}/{split}/images/{f}")
+        copy(label_path, f"{OUT_DIR}/{split}/labels/{label}")
+
+    print(f"{split}: skipped {skipped} images without labels")
 
 copy_files(train, "train")
 copy_files(val, "val")
