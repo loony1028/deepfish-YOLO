@@ -2,11 +2,11 @@ from ultralytics import YOLO
 
 def main():
     # Load YOLOv8 segmentation model (nano version)
-    model = YOLO("yolov8n-seg.pt")  # pretrained weights
+    model = YOLO("yolov8m-seg.pt")  # pretrained weights
 
     # Train the model
     results = model.train(
-        data="data/fish.yaml",   # path to dataset config
+        data="data/fish.yaml",  # path to dataset config
         epochs=50,              # adjust as needed
         imgsz=640,              # image size
         batch=4,                # keep small for CPU
