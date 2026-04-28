@@ -163,5 +163,5 @@ if uploaded_file is not None:
         else:
             st.write("No fish detected.")
 
-        # if result.masks is not None:
-        #     st.write("Mask shape:", result.masks.data.shape)
+        if result.masks is not None:
+            st.write("Mask shape:", result.masks.data.shape)

@@ -19,7 +19,7 @@ random.shuffle(images)
 split_idx = int(len(images) * 0.8)
 
 train = images[:split_idx]
-val = images[split_idx:]
+val = images[split_idx:] 
 
 def copy_files(files, split):
     skipped = 0
